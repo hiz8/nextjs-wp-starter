@@ -1,6 +1,9 @@
-import Image from 'next/image';
+import * as styles from './avatar.css';
 
-export default function Avatar({ author }) {
+type Props = {
+  author: any;
+};
+export default function Avatar({ author }: Props) {
   const name = author
     ? author.firstName && author.lastName
       ? `${author.firstName} ${author.lastName}`
@@ -8,18 +11,13 @@ export default function Avatar({ author }) {
     : null;
 
   return (
-    <div className="flex items-center">
-      <div className="w-12 h-12 relative mr-4">
+    <div className={styles.root}>
+      <div className={styles.imageWrapper}>
         {author.avatar.url && (
-          <Image
-            src={author.avatar.url}
-            layout="fill"
-            className="rounded-full"
-            alt={name}
-          />
+          <img src={author.avatar.url} className={styles.image} alt={name} />
         )}
       </div>
-      <div className="text-xl font-bold">{name}</div>
+      <div className={styles.name}>{name}</div>
     </div>
   );
 }

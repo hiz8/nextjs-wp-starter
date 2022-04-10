@@ -1,8 +1,11 @@
-import styles from './post-body.module.css';
+import * as styles from './post-body.css';
 
-export default function PostBody({ content }) {
+type Props = {
+  content: string;
+};
+export default function PostBody({ content }: Props) {
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className={styles.root}>
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: content }}

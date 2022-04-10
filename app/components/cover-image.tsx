@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
+import * as styles from './cover-image.css';
 
 type Props = {
   title: string;
@@ -20,7 +21,7 @@ export default function CoverImage({ title, coverImage, slug }: Props) {
     />
   );
   return (
-    <div className="sm:mx-0">
+    <div className={styles.root}>
       {slug ? (
         <Link href={`/posts/${slug}`}>
           <a aria-label={title}>{image}</a>
