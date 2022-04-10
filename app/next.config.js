@@ -5,7 +5,7 @@ module.exports = withVanillaExtract({
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
-    domains: ['1.gravatar.com', 'localhost'],
+    domains: ['1.gravatar.com', 'wordpress'],
   },
   webpackDevMiddleware: (config) => {
     // Solve compiling problem via vagrant
