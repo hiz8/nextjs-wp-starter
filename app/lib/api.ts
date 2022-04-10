@@ -1,6 +1,9 @@
 const API_URL = process.env.WORDPRESS_API_URL!;
 
-async function fetchAPI(query: any, { variables }: any = {}) {
+async function fetchAPI(
+  query: string,
+  { variables }: Record<string, any> = {},
+) {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
@@ -28,7 +31,10 @@ async function fetchAPI(query: any, { variables }: any = {}) {
   return json.data;
 }
 
-export async function getPreviewPost(id: any, idType = 'DATABASE_ID') {
+export async function getPreviewPost(
+  id: string | string[],
+  idType = 'DATABASE_ID',
+) {
   const data = await fetchAPI(
     `
     query PreviewPost($id: ID!, $idType: PostIdType!) {
@@ -60,7 +66,7 @@ export async function getAllPostsWithSlug() {
   return data?.posts;
 }
 
-export async function getAllPostsForHome(preview: any) {
+export async function getAllPostsForHome(preview: boolean) {
   const data = await fetchAPI(
     `
     query AllPosts {
@@ -103,8 +109,8 @@ export async function getAllPostsForHome(preview: any) {
 }
 
 export async function getPostAndMorePosts(
-  slug: any,
-  preview: any,
+  slug: string | string[] | undefined,
+  preview: boolean,
   previewData: any,
 ) {
   const postPreview = preview && previewData?.post;
